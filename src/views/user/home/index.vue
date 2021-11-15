@@ -1,7 +1,12 @@
 <template>
-  <basic-layout :show-back-btn="false" :toolbar-content-full="true">
+  <basic-layout :show-back-btn="false">
     <template #bg>
-      <img :src="userBanner" alt="" class="w-full h-auto" />
+      <div class="relative h-372px">
+        <img :src="userBanner" alt="" class="w-full h-full" />
+        <div class="absolute left-0 -bottom-64px px-32px">
+          <action-card />
+        </div>
+      </div>
     </template>
     <template #toolbar>
       <div class="flex w-full px-32px pt-24px py-36px">
@@ -12,9 +17,7 @@
         <Icon icon="icon-park-outline:setting-one" class="text-48px text-white" />
       </div>
     </template>
-    <div class="px-32px">
-      <action-card />
-    </div>
+    <div class="px-32px"></div>
   </basic-layout>
 </template>
 

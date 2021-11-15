@@ -18,7 +18,7 @@
     "lint:fix": "eslint --fix ./src --ext .vue,.js,jsx,.ts,tsx",
     "prepare": "husky install",
     "add:ios": "ionic capacitor build ios --no-build",
-    "add:android": "capacitor build android --no-build",
+    "add:android": "ionic capacitor build android --no-build",
     "sync": "npx jetify && npx cap sync",
     "copy-nobuild": "ionic capacitor copy --no-build",
     "copy:dev": "npm run build:dev && ionic capacitor copy --no-build",
@@ -35,6 +35,7 @@
     "*.{vue,js,jsx,ts,tsx}": "eslint --fix"
   },
   "dependencies": {
+    "@capacitor/android": "3.3.1",
     "@capacitor/app": "1.0.6",
     "@capacitor/core": "3.3.1",
     "@capacitor/haptics": "1.1.3",

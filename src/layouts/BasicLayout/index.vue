@@ -1,29 +1,31 @@
 <template>
   <ion-page>
-    <div class="absolute-lt">
-      <slot name="bg"></slot>
-    </div>
-    <ion-header mode="ios">
-      <ion-toolbar mode="ios" style="--border-width: 0" :style="bgColorVar">
-        <div class="flex-y-center justify-between">
-          <div v-show="!toolbarContentFull" class="w-120px">
-            <ion-back-button v-if="showBackBtn" default-href="/" text="返回" />
-          </div>
-          <div class="flex-1-hidden flex-center">
-            <slot name="toolbar">
-              <h3 class="text-36px font-bold">{{ toolbarTitle }}</h3>
-            </slot>
-          </div>
-          <div v-show="!toolbarContentFull" class="flex-center w-120px">
-            <slot name="toolbar-extral"></slot>
-          </div>
+    <ion-content :force-overscroll="false" :fullscreen="true">
+      <div class="safe-area-container h-full">
+        <div class="flex-col-stretch h-full">
+          <header class="flex-y-center min-h-88px z-2" :class="{ 'pt-80px': !isNativeApple }">
+            <template v-if="!hasToolbarSlot">
+              <div class="flex-y-center w-120px">
+                <ion-back-button v-if="showBackBtn" mode="ios" default-href="/" text="返回" class="text-[#666]" />
+              </div>
+              <h3 class="ellipsis-text flex-1 text-center leading-44px text-36px font-bold text-[#333]">
+                {{ toolbarTitle }}
+              </h3>
+              <div class="w-120px">
+                <slot name="toolbar-extral"></slot>
+              </div>
+            </template>
+            <slot name="toolbar"></slot>
+          </header>
+          <main class="relative flex-1-hidden z-2">
+            <div class="h-full overflow-y-auto">
+              <slot></slot>
+            </div>
+          </main>
         </div>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :force-overscroll="false" :style="bgColorVar">
-      <slot></slot>
-      <div slot="fixed" :class="fixedClass">
-        <slot name="fixed"></slot>
+      </div>
+      <div class="absolute-lt w-full h-full z-1">
+        <slot name="bg"></slot>
       </div>
     </ion-content>
   </ion-page>
@@ -31,31 +33,33 @@
 
 <script setup lang="ts">
 import { useSlots, computed } from 'vue';
-import { IonContent, IonHeader, IonPage, IonToolbar, IonBackButton } from '@ionic/vue';
+import { IonContent, IonPage, IonBackButton } from '@ionic/vue';
+import { getIsNativeApple } from '@/utils';
 
 interface Props {
   /** 顶部工具栏标题 */
   toolbarTitle?: string;
   /** 是否显示返回按钮 */
   showBackBtn?: boolean;
-  /** 固定元素的类名 */
-  fixedClass?: string;
-  /** toolbar内容占满100%宽 */
-  toolbarContentFull?: boolean;
 }
 
 withDefaults(defineProps<Props>(), {
   toolbarTitle: '',
-  showBackBtn: true,
-  fixedClass: '',
-  toolbarContentFull: false
+  showBackBtn: true
 });
 
 const slots = useSlots();
 
-const hasBgSlot = computed(() => Object.keys(slots).includes('bg'));
+/** 是否有toolbar插槽 */
+const hasToolbarSlot = computed(() => Object.keys(slots).includes('toolbar'));
 
-/** 透明背景用于设置沉浸状态栏的背景 */
-const bgColorVar = computed(() => (hasBgSlot.value ? '--background: transparent' : ''));
+const isNativeApple = getIsNativeApple();
 </script>
-<style scoped></style>
+<style scoped>
+.safe-area-container {
+  padding-top: var(--ion-safe-area-top);
+  padding-bottom: var(--ion-safe-area-bottom);
+  padding-left: var(--ion-safe-area-left);
+  padding-right: var(--ion-safe-area-right);
+}
+</style>

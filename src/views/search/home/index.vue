@@ -1,10 +1,10 @@
 <template>
-  <basic-layout :show-back-btn="false" :toolbar-content-full="true">
+  <basic-layout :show-back-btn="false">
     <template #bg>
       <img :src="searchBanner" alt="" class="w-full h-auto" />
     </template>
     <template #toolbar>
-      <div class="flex-center pt-18px pb-24px">
+      <div class="flex-center w-full pt-18px pb-24px">
         <img class="w-75px h-70px" :src="logoWhite" alt="" />
         <img class="w-453px h-52px ml-16px" :src="searchBannerTitle" alt="" />
       </div>

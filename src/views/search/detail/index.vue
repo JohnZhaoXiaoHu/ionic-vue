@@ -1,5 +1,5 @@
 <template>
-  <basic-layout tool-bar-title="搜索详情">
+  <basic-layout toolbar-title="搜索详情">
     <p v-for="i in 100" :key="i">{{ i }}</p>
   </basic-layout>
 </template>
