@@ -4,13 +4,17 @@
       <img :src="searchBanner" alt="" class="absolute-lt w-full h-full -z-1" />
       <search-header />
     </template>
-    <div></div>
+    <div class="px-32px">
+      <search-carousel />
+      <vip-banner action-text="点击立即开通" />
+    </div>
   </overlay-layout>
 </template>
 
 <script setup lang="ts">
 import { OverlayLayout } from '@/layouts';
+import { VipBanner } from '@/components';
 import { searchBanner } from '@/assets';
-import { SearchHeader } from './components';
+import { SearchHeader, SearchCarousel } from './components';
 </script>
 <style scoped></style>
