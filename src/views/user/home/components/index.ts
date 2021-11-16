@@ -1,3 +1,3 @@
-import ActionCard from './ActionCard.vue';
+import UserHeader from './UserHeader/index.vue';
 
-export { ActionCard };
+export { UserHeader };

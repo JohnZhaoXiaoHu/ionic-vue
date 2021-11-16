@@ -1,5 +1,7 @@
-import searchBanner from './search-banner.png';
-import searchBannerTitle from './search-banner-title.png';
-import userBanner from './user-banner.png';
+import searchBanner from './search_banner.png';
+import searchBannerTitle from './search_banner-title.png';
+import searchHotSearchTitle from './search_hot-search-title.png';
 
-export { searchBanner, searchBannerTitle, userBanner };
+import userBanner from './user_banner.png';
+
+export { searchBanner, searchBannerTitle, searchHotSearchTitle, userBanner };

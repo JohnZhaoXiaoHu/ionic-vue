@@ -20,7 +20,6 @@
     "add:ios": "ionic capacitor build ios --no-build",
     "add:android": "ionic capacitor build android --no-build",
     "sync": "npx jetify && npx cap sync",
-    "copy-nobuild": "ionic capacitor copy --no-build",
     "copy:dev": "npm run build:dev && ionic capacitor copy --no-build",
     "copy:fat": "npm run build:fat && ionic capacitor copy --no-build",
     "copy:uat": "npm run build:uat && ionic capacitor copy --no-build",

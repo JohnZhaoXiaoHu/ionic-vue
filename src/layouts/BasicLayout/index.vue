@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-content :force-overscroll="false" :fullscreen="true">
-      <div class="safe-area-container h-full">
+      <safe-area-container>
         <div class="flex-col-stretch h-full">
           <header class="flex-y-center min-h-88px z-2" :class="{ 'pt-80px': !isNativeApple }">
             <template v-if="!hasToolbarSlot">
@@ -11,7 +11,7 @@
               <h3 class="ellipsis-text flex-1 text-center leading-44px text-36px font-bold text-[#333]">
                 {{ toolbarTitle }}
               </h3>
-              <div class="w-120px">
+              <div class="flex-y-center w-120px">
                 <slot name="toolbar-extral"></slot>
               </div>
             </template>
@@ -23,10 +23,7 @@
             </div>
           </main>
         </div>
-      </div>
-      <div class="absolute-lt w-full h-full z-1">
-        <slot name="bg"></slot>
-      </div>
+      </safe-area-container>
     </ion-content>
   </ion-page>
 </template>
@@ -34,6 +31,7 @@
 <script setup lang="ts">
 import { useSlots, computed } from 'vue';
 import { IonContent, IonPage, IonBackButton } from '@ionic/vue';
+import { SafeAreaContainer } from '@/components';
 import { getIsNativeApple } from '@/utils';
 
 interface Props {
@@ -55,11 +53,4 @@ const hasToolbarSlot = computed(() => Object.keys(slots).includes('toolbar'));
 
 const isNativeApple = getIsNativeApple();
 </script>
-<style scoped>
-.safe-area-container {
-  padding-top: var(--ion-safe-area-top);
-  padding-bottom: var(--ion-safe-area-bottom);
-  padding-left: var(--ion-safe-area-left);
-  padding-right: var(--ion-safe-area-right);
-}
-</style>
+<style scoped></style>
