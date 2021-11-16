@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col-reverse h-full">
+  <div class="flex flex-col-reverse h-full pb-2px">
     <action-card />
     <div class="flex pb-36px">
       <div class="flex-center w-120px h-120px bg-white rounded-full">
